@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --border: 214.3 31.8% 91.4%;
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ReactFlow custom styles */
+.react-flow__node {
+  @apply rounded-lg shadow-md transition-all duration-200;
+}
+
+.react-flow__node.selected {
+  @apply ring-2 ring-primary ring-offset-2;
+}
+
+.react-flow__node-default {
+  @apply bg-white border-2 border-gray-300;
+}
+
+.react-flow__node-document {
+  @apply bg-blue-50 border-2 border-blue-400;
+}
+
+.react-flow__node-generating {
+  @apply animate-pulse;
+}
+
+.react-flow__edge-path {
+  @apply stroke-2;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  @apply stroke-primary stroke-[3px];
+}
+
+/* Version stack visual effect */
+.version-stack {
+  @apply relative;
+}
+
+.version-stack::before {
+  content: '';
+  @apply absolute -top-1 -left-1 w-full h-full bg-gray-200 rounded-lg -z-10 opacity-50;
+}
+
+.version-stack::after {
+  content: '';
+  @apply absolute -top-2 -left-2 w-full h-full bg-gray-100 rounded-lg -z-20 opacity-30;
+}
+
+/* Streaming content animation */
+@keyframes content-stream {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.streaming-content {
+  animation: content-stream 0.3s ease-out;
+}
+
+/* Progress bar for generation */
+.generation-progress {
+  @apply absolute bottom-0 left-0 h-1 bg-blue-500 transition-all duration-300;
+}
